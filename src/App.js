@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react';
+import Estatus from './components/Estatus.js';
+import Posteos from './components/Posteos.js';
+
 // El componente App es el padre de:
 // - Estatus
 // - Posteos
@@ -7,11 +10,16 @@ import React from 'react'
 // PROPS: App deberá pasar por props lo necesario a sus componenetes internos para que manipulen o lean su estado.
 
 function App() {
+  const [totalLikes, setTotalLikes] = useState(0);
+
+  function increaseTotalLikes() {
+    setTotalLikes((prevTotalLikes) => ++prevTotalLikes);
+  }
 
   return (
     <div className="App">
-      <Estatus />
-      <Posteos />
+      <Estatus totalLikes={totalLikes} />
+      <Posteos increaseTotalLikes={increaseTotalLikes} />
     </div>
   );
 }
